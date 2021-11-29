@@ -9,12 +9,19 @@ def index(request):
     })
 
 def entry(request, title):
-    if title in util.list_entries():
-        return render(request, "encyclopedia/entry.html", {
-            "title": title,
-            "contents": util.get_entry(title)
-        })
-    else: #give error message
-        return render(request, "encyclopedia/entry.html", {
-            "title": title.capitalize()
-        })
+    for entry in util.list_entries():
+        # if title corresponds to an existing page, render it.
+        if title.upper() == entry.upper():
+            return render(request, "encyclopedia/entry.html", {
+            "title": entry,
+            "contents": util.get_entry(entry) })
+
+    # else give error message
+    return render(request, "encyclopedia/error.html", {
+        "page": f"wiki/{title}"
+    })
+
+def search(request):
+    title = request.GET["q"]
+    return entry(request, title)
+    
