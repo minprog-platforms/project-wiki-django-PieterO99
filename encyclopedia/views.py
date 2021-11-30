@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from markdown2 import markdown
 from . import util
-
+from random import choice
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -44,17 +44,18 @@ def results(request, title):
 def new_page(request):
     try:
         title = request.GET["title"]
-        print(util.list_entries(), "hoi")
+        # give error message when title already exists (case-insensitive)
         if title.upper() in map(lambda x: x.upper(), util.list_entries()):
             return render(request, "encyclopedia/error.html", {
                 "page": f"wiki/{title}",
                 "error": "page already exists"
                 })
         content = request.GET["new_content"]
-        print(content)
         util.save_entry(title, content)
         return entry(request, title)
     except:
         return render (request, "encyclopedia/new_page.html", {
     })
     
+def random_page(request):
+    return entry(request, choice(util.list_entries()))
