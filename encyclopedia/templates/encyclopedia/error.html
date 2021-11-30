@@ -6,5 +6,11 @@
 
 {% block body %}
     <h1> {{ error }}. </h1>
-    # if statement
+    {% if error == "page already exists" %}
+            <h5>The page <em>{{ page }}</em></a> already exists. </h5>
+    {% elif error == "page could not be found" %}
+            <h5>The page <em>{{ page }}</em> could not be found.</h5>
+    {% else %}
+            <h5>Oops, something went wrong and we don't know what it is. </h5>
+    {% endif %}
 {% endblock %}
