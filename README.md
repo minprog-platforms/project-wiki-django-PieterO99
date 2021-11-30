@@ -13,7 +13,7 @@ It will consist of the following:
     - Clicking “Create New Page” in the sidebar should take the user to a page where they can create a new encyclopedia entry. 
  - [ ] **Edit Page**[^extra]:
     - On each entry page, the user should be able to click a link to be taken to a page where the user can edit that entry’s Markdown content in a textarea. 
- - [x]**Random Page**[^extra]:
+ - [x] **Random Page**[^extra]:
     - Clicking “Random Page” in the sidebar should take user to a random encyclopedia entry.
  
 [^extra]: These are not part of the main plan and are just extra ideas we *might* implement.
